@@ -5,7 +5,7 @@ import os
 user = os.environ['USERNAME']
 password = os.environ['PASSWORD']
 host = os.environ['HOSTNAME']
-port = 24564
+port = os.environ['DBPORT']
 database = os.environ['DATABASE']
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
 
