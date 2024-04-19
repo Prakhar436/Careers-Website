@@ -2,15 +2,9 @@
     <div class="col-10">
         <h4 class="mt-2">{{job['title']}}</h4>
         <div class="mt-2 lead"><b>Location: </b> {{job['location']}} </div>
-        {% if 'salary' in job %}
-        <div class="mt-2 lead"><b>Salary: </b> {{job['salary']}} </div>
-        <div class="mt-2 lead"><b>Currency: </b> {{job['currency']}} </div>
-        {% endif %}
-        <div class="mt-2 lead"><b>Responsibilities: </b> {{job['responsibilities']}} </div>
-        <div class="mt-2 lead"><b>Requirements: </b> {{job['requirements']}} </div>
     </div>
     <div class="col-2">
-        <button class="btn btn-primary btn-lg m-2">Apply</button>
+       <a href="/job/{{job['id']}}/"> <button class="btn btn-primary btn-lg m-2">Apply</button> </a> 
     </div>
 
 

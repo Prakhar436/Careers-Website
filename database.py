@@ -26,4 +26,13 @@ def load_jobs():
         # Convert rows into dictionaries
         list_of_dicts = [dict(zip(columns, row)) for row in rows]
         return list_of_dicts
-
+def get_job(id):
+    print("inside the getJob func with id",id)
+    with engine.connect() as connection:
+        sql_query = f"SELECT * from jobs WHERE id = {id}"
+        result = connection.execute(text(sql_query))
+        rows = result.fetchall()
+        if (len(rows)==0) : return None
+        columns = result.keys()
+        JOB = dict(zip(columns, rows[0]))
+        return JOB
