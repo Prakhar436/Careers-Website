@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row mx-0 justify-content-center">
+        
+        <div class="col-md-8 col-lg-6 px-lg-3 col-xl-6 px-xl-2 px-xxl-3">
+            <form method="POST" class="w-100 rounded-1 p-4 border bg-white " action = "/job/{{job['id']}}/apply"
+                enctype="multipart/form-data" id="application_form">
+                <label class="d-block mb-4">
+                    <span class="form-label d-block">Your name</span>
+                    <input required name="name" type="text" class="form-control" placeholder="Prakhar Pandey" />
+                </label>
+
+                <label class="d-block mb-4">
+                    <span class="form-label d-block">Email address</span>
+                    <input required name="email" type="email" class="form-control"
+                        placeholder="abc@example.com" />
+                </label>
+
+                <label class="d-block mb-4">
+                    <span class="form-label d-block">Years of experience</span>
+                    <select required name="experience" class="form-select">
+                        <option>Less than a year</option>
+                        <option>1 - 2 years</option>
+                        <option>2 - 4 years</option>
+                        <option>4 - 7 years</option>
+                        <option>7 - 10 years</option>
+                        <option>10+ years</option>
+                    </select>
+                </label>
+
+                <label class="d-block mb-4">
+                    <span class="form-label d-block">Tell us more about yourself</span>
+                    <textarea name="message" class="form-control" rows="3" placeholder="What motivates you?"></textarea>
+                </label>
+
+                <label class="d-block mb-4 {% if get_flashed_messages(category_filter=['error']) %}is-invalid{% endif %}">
+                    <span class="form-label d-block">Your CV</span>
+                    <span id="passwordHelpInline" class="form-text">
+                        Max Size: 1MB, Allowed types: .pdf, .docx, .txt.
+                    </span>
+                    <input required name="cv" type="file" class="form-control" />
+                    {% for message in get_flashed_messages(category_filter=['error']) %}
+                    <div class="invalid-feedback">{{message}}</div>
+                    {% endfor %}
+                </label>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary px-3 rounded-3">
+                        Apply
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
