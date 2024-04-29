@@ -16,8 +16,9 @@ def allowed_file(filename):
 @app.route('/')
 def helloWord():
     upload_path = app.config['UPLOAD_FOLDER']
-    if not os.path.exists(upload_path):
-        print('Welp, the upload folder does not exist.')
+    print('upload path:', os.path.join(app.root_path, 'static', 'uploads'))
+    # if not os.path.exists(upload_path):
+    #     print('Welp, the upload folder does not exist.')
     ALLJOBS = load_jobs()
     return render_template('home.html', jobs=ALLJOBS)
 
