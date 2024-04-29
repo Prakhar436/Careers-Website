@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.exceptions import RequestEntityTooLarge
 import os
 app = Flask(__name__)
-UPLOAD_FOLDER = './static/uploads'
+UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads') #the best way to give path. Works on development as well as production server
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024  # 1MB
@@ -15,10 +15,6 @@ def allowed_file(filename):
 
 @app.route('/')
 def helloWord():
-    upload_path = app.config['UPLOAD_FOLDER']
-    print('upload path:', os.path.join(app.root_path, 'static', 'uploads'))
-    # if not os.path.exists(upload_path):
-    #     print('Welp, the upload folder does not exist.')
     ALLJOBS = load_jobs()
     return render_template('home.html', jobs=ALLJOBS)
 
