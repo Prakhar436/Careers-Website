@@ -7,6 +7,7 @@ password = os.environ['PASSWORD']
 host = os.environ['HOSTNAME']
 port = os.environ['DBPORT']
 database = os.environ['DATABASE']
+
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:{port}/{database}")
 
 def load_jobs():
@@ -28,7 +29,6 @@ def load_jobs():
         return list_of_dicts
         
 def get_job(id):
-    print("inside the getJob func with id",id)
     with engine.connect() as connection:
         sql_query = f"SELECT * from jobs WHERE id = {id}"
         result = connection.execute(text(sql_query))
@@ -54,7 +54,6 @@ def store_application(job_id, application, pdfFile):
         conn.commit()
 
 def isDuplicateApplication(id, application):
-    print("inside the isDuplicateApplication func with application",application)
     with engine.connect() as conn:
         sql_query = text("SELECT * FROM applications WHERE email = :email AND job_id = :job_id")
         params = {
@@ -63,6 +62,4 @@ def isDuplicateApplication(id, application):
         }
         result = conn.execute(sql_query, params)
         rows = result.fetchall()
-        print("rows: ",rows)
-        print(len(rows)>0)
         return len(rows) > 0

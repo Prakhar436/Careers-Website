@@ -5,7 +5,7 @@ from werkzeug.exceptions import RequestEntityTooLarge
 from static.uploads.path import getDirectory
 import os
 app = Flask(__name__)
-UPLOAD_FOLDER = '/opt/render/project/src/static/uploads' #the best way to give path. Works on development as well as production server
+UPLOAD_FOLDER = '/opt/render/project/src/static/uploads' #!!!!ONLY FOR RENDER.COM SERVER!!!!
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024  # 1MB
@@ -16,8 +16,6 @@ def allowed_file(filename):
 
 @app.route('/')
 def helloWord():
-    current_file_path = os.path.abspath(__file__)
-    print(current_file_path)
     ALLJOBS = load_jobs()
     return render_template('home.html', jobs=ALLJOBS)
 
