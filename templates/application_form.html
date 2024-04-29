@@ -32,6 +32,7 @@
                     <textarea name="message" class="form-control" rows="3" placeholder="What motivates you?"></textarea>
                 </label>
 
+                <!-- Bootstrap form validation wasn't working at the time, so had to implement workarounds for the flash message. Left the 'is-invalid' unchanged, in case it gets fixed -->
                 <label class="d-block mb-4 {% if get_flashed_messages(category_filter=['error']) %}is-invalid{% endif %}">
                     <span class="form-label d-block">Your CV</span>
                     <span id="passwordHelpInline" class="form-text">
@@ -39,7 +40,8 @@
                     </span>
                     <input required name="cv" type="file" class="form-control" />
                     {% for message in get_flashed_messages(category_filter=['error']) %}
-                    <div class="invalid-feedback">{{message}}</div>
+                <!-- changed 'invalid-feedback' to 'feedback text-danger' below -->
+                    <div class="feedback text-danger">{{message}}</div>
                     {% endfor %}
                 </label>
 

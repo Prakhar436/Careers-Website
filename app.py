@@ -55,6 +55,7 @@ def save_job(id):
     else:
         flash('File type not allowed', 'error')
         return redirect(url_for('show_job',id = request.view_args['id']) + '#application_form')
+
     #this is a fallback, if the user somehow manages to bypass the allowed_file check
     return render_template('home.html')
 
