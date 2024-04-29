@@ -2,6 +2,7 @@ from flask import Flask, render_template, get_flashed_messages, jsonify, flash, 
 from database import load_jobs, get_job, store_application, isDuplicateApplication
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import RequestEntityTooLarge
+from static.uploads.path import getDirectory
 import os
 app = Flask(__name__)
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'uploads') #the best way to give path. Works on development as well as production server
@@ -15,6 +16,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def helloWord():
+    print(getDirectory())
     ALLJOBS = load_jobs()
     return render_template('home.html', jobs=ALLJOBS)
 
